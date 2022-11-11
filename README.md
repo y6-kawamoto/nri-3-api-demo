@@ -134,13 +134,14 @@ DELETE /users/:id
 
 ## DB 仕様
 
-### ■ 参加者 TBL（participants)
+### ■ 参加者 TBL（participant)
 
 | カラム名      | データ型   | 説明                            |
 | ------------- | ---------- | ------------------------------- |
 | id            | serial     | 参加者の ID                     |
-| last_name     | string(32) | 参加者の姓                      |
 | first_name    | string(32) | 参加者の名                      |
+| last_name     | string(32) | 参加者の姓                      |
 | origin        | string(32) | 参加者の出身地                  |
 | interesting_1 | text       | 参加者についての興味深いこと\_1 |
 | interesting_2 | text       | 参加者についての興味深いこと\_1 |
+| warnings      | intger     | 警告回数                        |

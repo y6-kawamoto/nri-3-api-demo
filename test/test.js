@@ -1,14 +1,12 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-// const expect = require('chai').expect;
 const { setupServer } = require('../src/server');
-
 chai.use(chaiHttp);
 chai.should();
 
 const server = setupServer();
 
-describe('Solo API Server', () => {
+describe('demo API Server', () => {
     let request;
     beforeEach(() => {
         request = chai.request(server).keepOpen();
@@ -29,14 +27,15 @@ describe('Solo API Server', () => {
             const res = await request.get('/participants/1');
             res.should.have.status(200);
             res.body.should.to.deep.equal({
-                address: '154 Hopper ave.',
-                country: 'United States',
-                email: 'fenxen@example.com',
-                firstName: 'Henry',
                 id: 1,
-                lastName: 'Krinkle',
-                postalCode: '60245',
-                region: 'New Jersey',
+                first_name: 'Yoshiaki',
+                last_name: 'Kawamoto',
+                origin: '兵庫県尼崎市',
+                interesting_1:
+                    '今もなお将来の夢を模索し続けています。変遷としては、ドッジボール選手(〜幼稚園)⇨漫画家(〜小1)⇨野球選手(〜小4)です。',
+                interesting_2:
+                    '昔から胃腸が弱いです。テレワークでも会議中よく途中で抜けて:トイレ::目が回る:行ってます。辛いです。',
+                warnings: 0,
             });
         });
     });
@@ -45,39 +44,45 @@ describe('Solo API Server', () => {
         it('全てのparticipantsの情報を返す', async () => {
             const res = await request.get('/participants');
             res.should.have.status(200);
-            res.body.length.should.equal(7);
+            res.body.length.should.equal(4);
         });
     });
 
     describe('POST /participants', () => {
         it('participantの情報を登録する', async () => {
-            const newId = 999;
+            //const newId = 9999;
             const expected = {
-                id: newId,
-                email: 'test99@example.com',
-                last_name: 'Parker',
-                postal_code: '55443',
+                id: 9999,
+                first_name: 'test',
+                last_name: 'test',
+                origin: 'test',
+                interesting_1: 'テスト1',
+                interesting_2: 'テスト2',
+                warnings: 0,
             };
             await request.post('/participants').send(expected);
-            const res = await request.get('/participants/999');
-            res.body.id.should.to.deep.equal(expected.id);
+            const res = await request.get('/participants/9999');
+            res.body.id.should.to.deep.equal(9999);
         });
     });
 
     describe('DELETE /participants/:id', () => {
         it('participantの情報を削除する', async () => {
-            await request.delete('/participants/999');
-            const res = await request.get('/participants/999');
+            await request.delete('/participants/9999');
+            const res = await request.get('/participants/9999');
             res.body.should.to.deep.equal('');
         });
     });
 
     describe('PUT /participants/:id', () => {
         it('participantの情報を更新する', async () => {
-            const update = { last_name: 'a' };
+            const update = { last_name: 'd' };
             await request.put('/participants/1').send(update);
             const res = await request.get('/participants/1');
-            res.body.lastName.should.to.deep.equal('a');
+            res.body.last_name.should.to.deep.equal('d');
+            await request
+                .put('/participants/1')
+                .send({ last_name: 'Kawamoto' });
         });
     });
 });
