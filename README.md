@@ -80,7 +80,7 @@ Code Chrysalis(nri-3)の参加者情報を更新する機能を提供します�
 **リクエスト URL**
 
 ```
-PUT /users
+PUT /users/:id
 ```
 
 <br>
