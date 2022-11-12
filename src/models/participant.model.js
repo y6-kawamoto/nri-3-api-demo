@@ -10,7 +10,11 @@ module.exports = {
      * @return {Promise<Array>} A promise that resolves to an array of participants.
      */
     getAll(limit = 100) {
-        return knex.select('*').from(PARTICIPANT_TABLE).limit(limit);
+        return knex
+            .select('*')
+            .from(PARTICIPANT_TABLE)
+            .orderBy('id')
+            .limit(limit);
     },
 
     /**
