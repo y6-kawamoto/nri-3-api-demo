@@ -62,17 +62,10 @@ module.exports = {
                 interesting_2: participant.interesting_2,
                 warnings: participant.warnings,
             })
-            .then(() => {
-                return id;
-            });
+            .returning('id');
     },
 
     delete(id) {
-        return knex(PARTICIPANT_TABLE)
-            .where({ id: id })
-            .del()
-            .then(() => {
-                return id;
-            });
+        return knex(PARTICIPANT_TABLE).where({ id: id }).del().returning('id');
     },
 };

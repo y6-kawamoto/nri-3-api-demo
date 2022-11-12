@@ -42,7 +42,6 @@ router.delete('/:id', async (req, res) => {
 //更新
 router.put('/:id', async (req, res) => {
     try {
-        console.log(req.body);
         await participantModel.update(req.params.id, req.body);
         res.status(201).json({ message: '参加者情報の更新が完了しました。' });
     } catch (err) {
@@ -55,18 +54,19 @@ router.put('/:id/warnings', async (req, res) => {
     const participant = await participantModel.getById(req.params.id);
     const numOfWarnings = participant.warnings + 1;
     let result = {};
+    let response = [];
     if (numOfWarnings < 3) {
         const update = { warnings: numOfWarnings };
-        await participantModel.update(req.params.id, update);
+        response = await participantModel.update(req.params.id, update);
         result = {
-            id: req.params.id,
+            id: response[0].id,
             warnings: numOfWarnings,
             message: `警告${numOfWarnings}回目です。`,
         };
     } else {
-        await participantModel.delete(req.params.id);
+        response = await participantModel.delete(req.params.id);
         result = {
-            id: req.params.id,
+            id: response[0].id,
             warnings: numOfWarnings,
             message: `警告回数が上限に達したので、除籍しました。`,
         };
