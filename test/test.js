@@ -80,9 +80,9 @@ describe('demo API Server', () => {
             await request.put('/participants/1').send(update);
             const res = await request.get('/participants/1');
             res.body.last_name.should.to.deep.equal('d');
-            await request
-                .put('/participants/1')
-                .send({ last_name: 'Kawamoto' });
+            //await request
+            //    .put('/participants/1')
+            //    .send({ last_name: 'Kawamoto' });
         });
     });
 

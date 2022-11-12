@@ -57,7 +57,7 @@ module.exports = {
                 id: participant.id,
                 first_name: participant.first_name,
                 last_name: participant.last_name,
-                origin: participant.orgin,
+                origin: participant.origin,
                 interesting_1: participant.interesting_1,
                 interesting_2: participant.interesting_2,
                 warnings: participant.warnings,

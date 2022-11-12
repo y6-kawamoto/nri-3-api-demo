@@ -50,5 +50,16 @@ exports.seed = async function (knex) {
                 '最近、納豆を1度に3パック食べると同期に話したら、普通に引かれました。1食1パックって少なくないですか。。。',
             warnings: 0,
         },
+        {
+            id: 999,
+            first_name: 'Kakeru',
+            last_name: 'Kawamura',
+            origin: '山梨県甲斐市',
+            interesting_1:
+                '今は神奈川県の山間部（秦野市）に住んでいます。が！ナンバープレートの地名部分には“湘南“って記載されているので湘南在住です',
+            interesting_2:
+                '動画の倍速視聴が癖で、YouTubeやNetflixの動画を1.5 ~ 3倍速で観ることが多いです。Video Speed Controllerというchromeプラグインにいつもお世話になっています',
+            warnings: 0,
+        },
     ]);
 };

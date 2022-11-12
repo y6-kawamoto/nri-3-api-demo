@@ -11,26 +11,43 @@ router.get('/', async (req, res, next) => {
 //取得（ID指定）
 router.get('/:id', async (req, res) => {
     const participant = await participantModel.getById(req.params.id);
-    res.status(200).json(participant);
+    if (participant) {
+        res.status(200).json(participant);
+    } else {
+        res.json({
+            message: `id:${req.params.id}の参加者は未登録、または除籍されています。`,
+        });
+    }
 });
 
 //登録
 router.post('/', async (req, res) => {
     const participant = req.body;
-    await participantModel.create(participant);
-    res.status(201).end();
+    try {
+        await participantModel.create(participant);
+        res.status(201).json({ message: '参加者登録が完了しました。' });
+    } catch (err) {
+        res.status(409).json({ message: err });
+    }
 });
 
 //削除
 router.delete('/:id', async (req, res) => {
     const participant = await participantModel.delete(req.params.id);
-    res.status(200).end();
+    res.status(200).json({
+        message: `id:${req.params.id}の参加者を削除しました。`,
+    });
 });
 
 //更新
 router.put('/:id', async (req, res) => {
-    const participant = await participantModel.update(req.params.id, req.body);
-    res.status(201).end();
+    try {
+        console.log(req.body);
+        await participantModel.update(req.params.id, req.body);
+        res.status(201).json({ message: '参加者情報の更新が完了しました。' });
+    } catch (err) {
+        console.log(err);
+    }
 });
 
 //警告回数の登録

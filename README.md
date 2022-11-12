@@ -132,7 +132,7 @@ DELETE /participants/:id
 
 <br>
 
-### ■ 4.警告 API
+### ■ 5.警告 API
 
 Code Chrysalis(nri-3)の参加者への警告を登録する機能を提供します。
 警告回数が上限（3)に達した参加者を自動で除籍します。
