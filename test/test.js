@@ -85,4 +85,15 @@ describe('demo API Server', () => {
                 .send({ last_name: 'Kawamoto' });
         });
     });
+
+    describe('PUT /participants/:id/warnings', () => {
+        it('participantに警告回数1を記録する', async () => {
+            const res = await request.put('/participants/2/warnings');
+            res.body.should.to.deep.equal({
+                id: '1',
+                warnings: 1,
+                message: '警告1回目です。',
+            });
+        });
+    });
 });
