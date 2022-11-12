@@ -15,7 +15,7 @@ Code Chrysalis(nri-3)の参加者情報を取得する機能を提供します�
 **リクエスト URL**
 
 ```
-GET /users/:id
+GET /participants/:id
 ```
 
 **リクエストパラメータ**
@@ -46,7 +46,7 @@ Code Chrysalis(nri-3)の参加者情報を登録する機能を提供します�
 **リクエスト URL**
 
 ```
-POST /users
+POST /participants
 ```
 
 <br>
@@ -80,7 +80,7 @@ Code Chrysalis(nri-3)の参加者情報を更新する機能を提供します�
 **リクエスト URL**
 
 ```
-PUT /users/:id
+PUT /participants/:id
 ```
 
 <br>
@@ -115,7 +115,7 @@ Code Chrysalis(nri-3)の参加者情報を削除する機能を提供します�
 **リクエスト URL**
 
 ```
-DELETE /users/:id
+DELETE /participants/:id
 ```
 
 **リクエストパラメータ**
@@ -129,6 +129,33 @@ DELETE /users/:id
 | フィールド名 | 説明        |
 | ------------ | ----------- |
 | ID           | 参加者の ID |
+
+<br>
+
+### ■ 4.警告 API
+
+Code Chrysalis(nri-3)の参加者への警告を登録する機能を提供します。
+警告回数が上限（3)に達した参加者を自動で除籍します。
+
+**リクエスト URL**
+
+```
+PUT /participants/:id/warnings
+```
+
+**リクエストパラメータ**
+
+```
+なし
+```
+
+**レスポンスフィールド**
+
+| フィールド名 | 説明        |
+| ------------ | ----------- |
+| ID           | 参加者の ID |
+| warnings     | 警告回数    |
+| message      | メッセージ  |
 
 <br>
 
